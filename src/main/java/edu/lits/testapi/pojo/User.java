@@ -13,7 +13,15 @@ public class User {
     private String name;
     private String city;
     private int rating;
+    private int picture_id;
 
+    public int getPicture_id() {
+        return picture_id;
+    }
+
+    public void setPicture_id(int picture_id) {
+        this.picture_id = picture_id;
+    }
 
     public int getId() {
         return id;
