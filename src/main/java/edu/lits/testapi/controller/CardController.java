@@ -39,7 +39,6 @@ public class CardController {
         return List.of(new Card(), new Card());
     }
 
-
     @GetMapping("/create")
     @ResponseBody
     public Card createCard(@RequestParam(required = false) Card userCard) {
@@ -78,6 +77,4 @@ public class CardController {
         System.out.println("here");
         return new Card();
     }
-
-
 }

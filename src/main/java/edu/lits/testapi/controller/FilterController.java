@@ -28,7 +28,6 @@ public class FilterController {
 
     @PostMapping("/default")
     @ResponseBody
-
     public List<Card> postFilter(@RequestBody FilterRequest request) {
         Filter filter = new Filter();
         filter.setProfessionList(List.of("driver", "manager"));

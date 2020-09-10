@@ -8,7 +8,7 @@ public  int id;
     public String userPhoto = "url_here";
     public List<String> cardListPhoto = List.of("url_1", "url_2");
     public String location = "Київ";
-    public String description = "Від'їжджаю на вихідні. Потрібно покропити сад";
+    public String description = "Відїжджаю на вихідні. Потрібно покропити сад";
     public Integer price = 450;
     public String firstMessage = "text_here";
     public String chat = "url_here";
