@@ -75,17 +75,9 @@ public class CardController {
     @ResponseBody
     public Card confirmCard(@RequestParam(required = true) Long cardID,
                             @RequestParam(required = true) Integer rating) {
-//        TODO
-
         System.out.println("here");
         return new Card();
     }
-
-
-/*
-    TODO:
-    createCard(model.Card card)
- */
 
 
 }
