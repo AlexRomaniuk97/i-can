@@ -1,11 +1,10 @@
 package edu.lits.testapi.controller;
 
-import com.sun.xml.bind.v2.TODO;
 import edu.lits.testapi.model.Card;
-import edu.lits.testapi.pojo.Resume;
+import edu.lits.testapi.model.Response;
 import edu.lits.testapi.service.CardService;
-import edu.lits.testapi.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,7 +63,22 @@ public class CardController {
 
     @GetMapping("/confirm-card-worker")
     @ResponseBody
-    public Card confirmCardWorker(@RequestParam(required = true) Long workerID,
+    public ResponseEntity<Response> confirmCardWorker(@RequestParam(required = true) Long workerID,
+                                                      @RequestParam(required = true) Long cardID) {
+        boolean status = false;
+        if(cardID == 1){
+            status = true;
+        }
+
+        Response response = new Response();
+        response.setStatus(status);
+        return ResponseEntity.ok()
+                .body(response);
+    }
+
+    @GetMapping("/reject-card-worker")
+    @ResponseBody
+    public Card rejectCardWorker(@RequestParam(required = true) Long workerID,
                                   @RequestParam(required = true) Long cardID) {
         System.out.println("here");
         return new Card();
