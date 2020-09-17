@@ -2,6 +2,7 @@ package edu.lits.testapi.controller;
 
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
     @GetMapping("/leaveFeedback")
     @ResponseBody
     public User leaveFeedback(@RequestParam(required = true) String feedback,
@@ -22,7 +22,8 @@ public class UserController {
 
     @GetMapping("/showFeedback")
     @ResponseBody
-    public User showFeedback(@RequestParam(required = true) User profilePhoto,
+    public User showFeedback(@RequestParam(required = true) User id,
+                             @RequestParam(required = true) User profilePhoto,
                              @RequestParam(required = true) User name,
                              @RequestParam(required = true) User rating,
                              @RequestParam(required = true) User feedback) {

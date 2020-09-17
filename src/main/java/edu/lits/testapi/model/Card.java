@@ -3,7 +3,7 @@ package edu.lits.testapi.model;
 import java.util.List;
 
 public class Card {
-public  int id;
+    public int id;
     public String userName = "Андрій";
     public String userPhoto = "url_here";
     public List<String> cardListPhoto = List.of("url_1", "url_2");

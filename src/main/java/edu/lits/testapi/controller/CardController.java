@@ -21,7 +21,7 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @GetMapping("/item")
+    @GetMapping("/item") //+
     @ResponseBody
     public Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
                         @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
@@ -30,7 +30,7 @@ public class CardController {
         return new Card();
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list") //+
     @ResponseBody
     public List<Card> getCardList(@RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
         System.out.println("here");
@@ -38,9 +38,22 @@ public class CardController {
         return List.of(new Card(), new Card());
     }
 
-    @GetMapping("/create")
+    @GetMapping("/create") //+e
     @ResponseBody
     public Card createCard(@RequestParam(required = false) Card userCard) {
+        System.out.println("here");
+        return new Card();
+    }
+    @GetMapping("/contact")
+    @ResponseBody
+    public Card contactCard(@RequestParam(required = false) Card id) {
+        System.out.println("here");
+        return new Card();
+    }
+
+    @GetMapping("/contract")
+    @ResponseBody
+    public Card contractCard(@RequestParam(required = false) Card id) {
         System.out.println("here");
         return new Card();
     }

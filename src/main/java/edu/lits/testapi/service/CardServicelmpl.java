@@ -12,7 +12,7 @@ public class CardServicelmpl implements CardService {
 
     @Override
     public Card readByID(Long id) {
-        Optional<Card> card =  cardRepository.findById(1L);
+        Optional<Card> card =  cardRepository.findById(id);
         return card.get();
     }
 }
