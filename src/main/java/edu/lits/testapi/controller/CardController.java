@@ -23,11 +23,11 @@ public class CardController {
 
     @GetMapping("/item") //+
     @ResponseBody
-    public Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
-                        @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
+    public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
+                                              @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
         System.out.println("here");
         edu.lits.testapi.pojo.Card card = cardService.readByID(1L);                 
-        return new Card();
+        return card;
     }
 
     @GetMapping("/list") //+
