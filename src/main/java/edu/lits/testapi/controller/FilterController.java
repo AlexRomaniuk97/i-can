@@ -18,7 +18,6 @@ public class FilterController {
 
     @GetMapping("/default")
     @ResponseBody
-
     public Filter getCard() {
       Filter filter = new Filter();
       filter.setProfessionList(List.of("driver", "manager"));

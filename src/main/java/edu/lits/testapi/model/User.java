@@ -4,14 +4,14 @@ import java.util.List;
 
 public class User {
     public String userPhoto = "url_here";
-    public String name;
-    public String location;
-    public String description;
-    public int phoneNumber;
-    public int rating;
+    public String name = "Альберт";
+    public String location = "Путила";
+    public String description = "Я Альберт ремонтую все, що не поламане";
+    public int phoneNumber = 4949939;
+    public int rating = 2;
     public List<String> UserJobFoto = List.of("url_1", "url_2");
-    public String leaveFeedback = "url_here";
-    public String showFeedback = "url_here";
+    public String leaveFeedback = "Работнік не очінь, дзеркало не робить";
+    public String showFeedback;
 
     public User() {
     }

@@ -26,7 +26,7 @@ public class CardController {
     public Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
                         @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
         System.out.println("here");
-        edu.lits.testapi.pojo.Card card = cardService.readByID(1L);
+        edu.lits.testapi.pojo.Card card = cardService.readByID(1L);                 
         return new Card();
     }
 
@@ -61,7 +61,7 @@ public class CardController {
         return new Card();
     }
 
-    @GetMapping("/confirm-card-worker")
+    @GetMapping("/confirm-card-worker") //+
     @ResponseBody
     public ResponseEntity<Response> confirmCardWorker(@RequestParam(required = true) Long workerID,
                                                       @RequestParam(required = true) Long cardID) {
@@ -76,7 +76,7 @@ public class CardController {
                 .body(response);
     }
 
-    @GetMapping("/reject-card-worker")
+    @GetMapping("/reject-card-worker")  //+
     @ResponseBody
     public Card rejectCardWorker(@RequestParam(required = true) Long workerID,
                                   @RequestParam(required = true) Long cardID) {
