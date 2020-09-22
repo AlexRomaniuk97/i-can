@@ -45,6 +45,13 @@ public class CardController {
         return new Card();
     }
 
+    @GetMapping("/our/list")
+    @ResponseBody
+    public Card ourCardList(@RequestParam(required = true) Integer id,
+                            @RequestParam(required = false) List<Card> cardList){
+        System.out.println("here");
+        return new Card();
+    }
 
     @GetMapping("/contact")
     @ResponseBody
