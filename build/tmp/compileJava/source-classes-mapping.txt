@@ -1,0 +1,84 @@
+edu/lits/testapi/service/CardToPictureServicelmpl.java
+ edu.lits.testapi.service.CardToPictureServicelmpl
+edu/lits/testapi/model/Response.java
+ edu.lits.testapi.model.Response
+edu/lits/testapi/service/PictureStorageService.java
+ edu.lits.testapi.service.PictureStorageService
+edu/lits/testapi/repository/PotentialWorkerRepository.java
+ edu.lits.testapi.repository.PotentialWorkerRepository
+edu/lits/testapi/service/ProfessionServicelmpl.java
+ edu.lits.testapi.service.ProfessionServicelmpl
+edu/lits/testapi/repository/ProfessionRepository.java
+ edu.lits.testapi.repository.ProfessionRepository
+edu/lits/testapi/controller/ProfessionController.java
+ edu.lits.testapi.controller.ProfessionController
+edu/lits/testapi/service/UserService.java
+ edu.lits.testapi.service.UserService
+edu/lits/testapi/repository/CardToPictureRepository.java
+ edu.lits.testapi.repository.CardToPictureRepository
+edu/lits/testapi/service/ResumeService.java
+ edu.lits.testapi.service.ResumeService
+edu/lits/testapi/configuration/Swagger2Config.java
+ edu.lits.testapi.configuration.Swagger2Config
+edu/lits/testapi/model/UploadFileResponse.java
+ edu.lits.testapi.model.UploadFileResponse
+edu/lits/testapi/controller/FileController.java
+ edu.lits.testapi.controller.FileController
+edu/lits/testapi/pojo/Picture.java
+ edu.lits.testapi.pojo.Picture
+edu/lits/testapi/pojo/PotentialWorker.java
+ edu.lits.testapi.pojo.PotentialWorker
+edu/lits/testapi/model/CardCreateRequest.java
+ edu.lits.testapi.model.CardCreateRequest
+edu/lits/testapi/service/CardToPicrureService.java
+ edu.lits.testapi.service.CardToPicrureService
+edu/lits/testapi/model/User.java
+ edu.lits.testapi.model.User
+edu/lits/testapi/pojo/CardToPicture.java
+ edu.lits.testapi.pojo.CardToPicture
+edu/lits/testapi/repository/UserRepository.java
+ edu.lits.testapi.repository.UserRepository
+edu/lits/testapi/service/UserServiceImpl.java
+ edu.lits.testapi.service.UserServiceImpl
+edu/lits/testapi/service/CardService.java
+ edu.lits.testapi.service.CardService
+edu/lits/testapi/model/FilterRequest.java
+ edu.lits.testapi.model.FilterRequest
+edu/lits/testapi/controller/FilterController.java
+ edu.lits.testapi.controller.FilterController
+edu/lits/testapi/service/ProfessionService.java
+ edu.lits.testapi.service.ProfessionService
+edu/lits/testapi/pojo/Profession.java
+ edu.lits.testapi.pojo.Profession
+edu/lits/testapi/service/ResumeServiceImpl.java
+ edu.lits.testapi.service.ResumeServiceImpl
+edu/lits/testapi/repository/CardRepository.java
+ edu.lits.testapi.repository.CardRepository
+edu/lits/testapi/model/Filter.java
+ edu.lits.testapi.model.Filter
+edu/lits/testapi/repository/ResumeRepository.java
+ edu.lits.testapi.repository.ResumeRepository
+edu/lits/testapi/pojo/Resume.java
+ edu.lits.testapi.pojo.Resume
+edu/lits/testapi/service/PotentialWorkerService.java
+ edu.lits.testapi.service.PotentialWorkerService
+edu/lits/testapi/service/PotentialWorkerServicelmpl.java
+ edu.lits.testapi.service.PotentialWorkerServicelmpl
+edu/lits/testapi/TestapiApplication.java
+ edu.lits.testapi.TestapiApplication
+edu/lits/testapi/repository/PictureRepository.java
+ edu.lits.testapi.repository.PictureRepository
+edu/lits/testapi/pojo/Card.java
+ edu.lits.testapi.pojo.Card
+edu/lits/testapi/pojo/User.java
+ edu.lits.testapi.pojo.User
+edu/lits/testapi/controller/UserController.java
+ edu.lits.testapi.controller.UserController
+edu/lits/testapi/model/Card.java
+ edu.lits.testapi.model.Card
+edu/lits/testapi/controller/ResumeController.java
+ edu.lits.testapi.controller.ResumeController
+edu/lits/testapi/service/CardServicelmpl.java
+ edu.lits.testapi.service.CardServicelmpl
+edu/lits/testapi/controller/CardController.java
+ edu.lits.testapi.controller.CardController
