@@ -72,9 +72,9 @@ edu/lits/testapi/pojo/User.java
  edu.lits.testapi.pojo.User
 edu/lits/testapi/repository/CardToPictureRepository.java
  edu.lits.testapi.repository.CardToPictureRepository
-edu/lits/testapi/controller/CardController.java
- edu.lits.testapi.controller.CardController
-edu/lits/testapi/pojo/PotentialWorker.java
- edu.lits.testapi.pojo.PotentialWorker
 edu/lits/testapi/controller/ResumeController.java
  edu.lits.testapi.controller.ResumeController
+edu/lits/testapi/pojo/PotentialWorker.java
+ edu.lits.testapi.pojo.PotentialWorker
+edu/lits/testapi/controller/CardController.java
+ edu.lits.testapi.controller.CardController
