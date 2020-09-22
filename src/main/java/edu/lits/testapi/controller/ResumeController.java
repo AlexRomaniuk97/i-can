@@ -23,9 +23,8 @@ public class ResumeController {
     @GetMapping("/item")
     @ResponseBody
 
-    public Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
-                        @RequestParam(required = false,
-                                defaultValue = "Chernivtsi") String location) {
+    public Card getCard(@RequestParam(required = true) Integer id,
+                        @RequestParam(required = false) String location) {
         System.out.println("here");
         Resume resume = resumeService.readByID(1L);
         return new Card();
@@ -34,7 +33,7 @@ public class ResumeController {
     @GetMapping("/list")
     @ResponseBody
 
-    public List<Card> getCardList(@RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
+    public List<Card> getCardList(@RequestParam(required = false) String location) {
         System.out.println("here");
 
         return List.of(new Card(), new Card()) ;

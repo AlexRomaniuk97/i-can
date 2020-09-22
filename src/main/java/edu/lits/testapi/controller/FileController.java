@@ -33,7 +33,7 @@ public class FileController {
 //                    paramType = "header",
 //                    dataTypeClass = String.class,
 //                    example = "Bearer access_token"))
-//    @PostMapping("/uploadFile")
+    @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         Picture dbFile = pictureStorageService.storeFile(file);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
