@@ -23,8 +23,8 @@ public class CardController {
 
     @GetMapping("/item") //+
     @ResponseBody
-    public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
-                                              @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
+    public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Integer id,
+                                              @RequestParam(required = false) ) {
         System.out.println("here");
         return cardService.readByID(id.longValue());
     }
@@ -32,7 +32,7 @@ public class CardController {
     @GetMapping("/list") //+w
     @ResponseBody
     public List<edu.lits.testapi.pojo.Card> getCardList(@RequestParam(required = true) Integer id,
-                                                        @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
+                                                        @RequestParam(required = false) ) {
         System.out.println("here");
         edu.lits.testapi.pojo.Card card = cardService.readByID(id.longValue());
         return List.of(card, card);
