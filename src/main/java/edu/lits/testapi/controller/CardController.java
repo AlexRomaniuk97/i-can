@@ -59,7 +59,7 @@ public class CardController {
         System.out.println("here");
         return cardService.readByID(id);
     }
-
+//C
     @GetMapping("/contract")
     @ResponseBody
     public edu.lits.testapi.pojo.Card contractCard(@RequestParam(required = false) Long id,
