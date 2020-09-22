@@ -26,16 +26,16 @@ public class CardController {
     public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true, defaultValue = "Chernivtsi") Integer id,
                                               @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
         System.out.println("here");
-        edu.lits.testapi.pojo.Card card = cardService.readByID(1L);                 
-        return card;
+        return cardService.readByID(id.longValue());
     }
 
-    @GetMapping("/list") //+
+    @GetMapping("/list") //+w
     @ResponseBody
-    public List<Card> getCardList(@RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
+    public List<edu.lits.testapi.pojo.Card> getCardList(@RequestParam(required = true) Integer id,
+                                                        @RequestParam(required = false, defaultValue = "Chernivtsi") String location) {
         System.out.println("here");
-
-        return List.of(new Card(), new Card());
+        edu.lits.testapi.pojo.Card card = cardService.readByID(id.longValue());
+        return List.of(card, card);
     }
 
     @GetMapping("/create") //+e
@@ -44,18 +44,29 @@ public class CardController {
         System.out.println("here");
         return new Card();
     }
+
+
     @GetMapping("/contact")
     @ResponseBody
-    public Card contactCard(@RequestParam(required = false) Card id) {
+    public edu.lits.testapi.pojo.Card contactCard(@RequestParam(required = false) Long id) {
         System.out.println("here");
-        return new Card();
+        return cardService.readByID(id);
     }
 
     @GetMapping("/contract")
     @ResponseBody
-    public Card contractCard(@RequestParam(required = false) Card id) {
+    public edu.lits.testapi.pojo.Card contractCard(@RequestParam(required = false) Long id,
+                                                   @RequestParam(required = false) String firstMassage) {
         System.out.println("here");
-        return new Card();
+        return cardService.readByID(id);
+    }
+
+    @GetMapping("/rate")
+    @ResponseBody
+    public edu.lits.testapi.pojo.Card rateCard(@RequestParam(required = false) Long id,
+                                               @RequestParam(required = false) int rate) {
+        System.out.println("here");
+        return cardService.readByID(id);
     }
 
     @GetMapping("/update")
@@ -79,7 +90,7 @@ public class CardController {
     public ResponseEntity<Response> confirmCardWorker(@RequestParam(required = true) Long workerID,
                                                       @RequestParam(required = true) Long cardID) {
         boolean status = false;
-        if(cardID == 1){
+        if (cardID == 1) {
             status = true;
         }
 
@@ -92,7 +103,7 @@ public class CardController {
     @GetMapping("/reject-card-worker")  //+
     @ResponseBody
     public Card rejectCardWorker(@RequestParam(required = true) Long workerID,
-                                  @RequestParam(required = true) Long cardID) {
+                                 @RequestParam(required = true) Long cardID) {
         System.out.println("here");
         return new Card();
     }
