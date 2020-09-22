@@ -23,17 +23,17 @@ public class CardController {
 
     @GetMapping("/item") //+
     @ResponseBody
-    public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Integer id) {
+        public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Integer id) {
         System.out.println("here");
         return cardService.readByID(id.longValue());
     }
 
     @GetMapping("/list") //+w
     @ResponseBody
-    public List<edu.lits.testapi.pojo.Card> getCardList(@RequestParam(required = true) Integer id) {
+    public List<edu.lits.testapi.pojo.Card> getCardList() {
         System.out.println("here");
-        edu.lits.testapi.pojo.Card card = cardService.readByID(id.longValue());
-        return List.of(card, card);
+        List<edu.lits.testapi.pojo.Card> cardList = cardService.readAll();
+        return cardList;
     }
 
     @GetMapping("/create") //+e
