@@ -122,4 +122,14 @@ public class CardController {
         System.out.println("here");
         return new Card();
     }
+
+    @GetMapping("/card/our/confirm")
+    @ResponseBody
+    public Card confirmOurCard(@RequestParam(required = true) Long cardID,
+                            @RequestParam(required = true) Long userId) {
+        System.out.println("card/our/confirm");
+        return new Card();
+    }
+
+
 }
