@@ -22,4 +22,9 @@ public class CardServicelmpl implements CardService {
     public List<Card> readAll() {
         return cardRepository.findAll();
     }
+
+    @Override
+    public void create(Card card) {
+        cardRepository.save(card);
+    }
 }

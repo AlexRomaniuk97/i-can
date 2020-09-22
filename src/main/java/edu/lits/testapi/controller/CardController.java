@@ -6,10 +6,7 @@ import edu.lits.testapi.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,10 +33,14 @@ public class CardController {
         return cardList;
     }
 
-    @GetMapping("/create") //+e
+    @PostMapping("/create") //+e
     @ResponseBody
-    public Card createCard(@RequestParam(required = false) Card userCard) {
-        System.out.println("here");
+    public Card createCard(@RequestBody(required = false) Card userCard) {
+        edu.lits.testapi.pojo.Card card = new edu.lits.testapi.pojo.Card();
+        card.setAuthor_id(1L);
+        card.setPrice(123);
+        card.setRating(5);
+        cardService.create(card);
         return new Card();
     }
 

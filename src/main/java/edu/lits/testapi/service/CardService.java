@@ -8,4 +8,6 @@ public interface CardService {
     Card readByID(Long id);
 
     List<Card> readAll();
+
+    void create(Card card);
 }
