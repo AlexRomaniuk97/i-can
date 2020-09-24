@@ -24,15 +24,15 @@ public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(edu.lits.testapi.controller.FileController.class);
     @Autowired
     private PictureStorageService pictureStorageService;
-//    @ApiImplicitParams(
-//            @ApiImplicitParam(
-//                    name = "Authorization",
-//                    value = "Access Token",
-//                    required = true,
-//                    allowEmptyValue = false,
-//                    paramType = "header",
-//                    dataTypeClass = String.class,
-//                    example = "Bearer access_token"))
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         Picture dbFile = pictureStorageService.storeFile(file);
