@@ -45,8 +45,7 @@ public class FilterController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-    @GetMapping("/card/our/confirm")
-    @ResponseBody
+
     @PostMapping("/create")
     @ResponseBody
     public String createCard(@RequestBody CardCreateRequest request) {
