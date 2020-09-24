@@ -4,6 +4,8 @@ import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.CardCreateRequest;
 import edu.lits.testapi.model.Filter;
 import edu.lits.testapi.model.FilterRequest;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,17 @@ public class FilterController {
 
     }
 
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @GetMapping("/card/our/confirm")
+    @ResponseBody
     @PostMapping("/create")
     @ResponseBody
     public String createCard(@RequestBody CardCreateRequest request) {
