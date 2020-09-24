@@ -2,8 +2,8 @@ edu/lits/testapi/service/CardToPictureServicelmpl.java
  edu.lits.testapi.service.CardToPictureServicelmpl
 edu/lits/testapi/controller/JwtAuthenticationController.java
  edu.lits.testapi.controller.JwtAuthenticationController
-edu/lits/testapi/configuration/WebSecurityConfig.java
- edu.lits.testapi.configuration.WebSecurityConfig
+edu/lits/testapi/service/CardService.java
+ edu.lits.testapi.service.CardService
 edu/lits/testapi/repository/PotentialWorkerRepository.java
  edu.lits.testapi.repository.PotentialWorkerRepository
 edu/lits/testapi/utils/JwtTokenUtil.java
@@ -98,5 +98,5 @@ edu/lits/testapi/repository/CardToPictureRepository.java
  edu.lits.testapi.repository.CardToPictureRepository
 edu/lits/testapi/pojo/PotentialWorker.java
  edu.lits.testapi.pojo.PotentialWorker
-edu/lits/testapi/service/CardService.java
- edu.lits.testapi.service.CardService
+edu/lits/testapi/configuration/WebSecurityConfig.java
+ edu.lits.testapi.configuration.WebSecurityConfig

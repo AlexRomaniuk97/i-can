@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "c8c6895d-012d-4cf9-909f-566c2235506c",
+		"name": "LITS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/secured",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaXRzdXNlciIsImV4cCI6MTU5ODk2OTM2MiwiaWF0IjoxNTk4OTY5MDYyfQ.tNhhFGMnbzB1HmmyJILqHUU7bpErNwmvpUSwtmF1eprG4gNGx3z4tkuMdehFmS4920o5jB5LjiDt8NQHaygHPg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/secured/initial",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secured",
+						"initial"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/authenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"username\":\"litsuser\",\n \"password\":\"password\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
