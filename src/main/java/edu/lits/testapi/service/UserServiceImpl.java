@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService{
     public void create(User user) {
 
     }
+
+    @Override
+    public void create(User user) {
+        userRepository.save(user);
+    }
 }

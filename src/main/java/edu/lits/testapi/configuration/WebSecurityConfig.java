@@ -55,7 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
               "/webjars/**",
               "card/list**",
               "card/item**",
-              "card/our/list**").permitAll().
+              "card/our/list**",
+              "/createUser**").permitAll().
               // all other requests need to be authenticated
                       anyRequest().authenticated().and().
               // make sure we use stateless session; session won't be used to

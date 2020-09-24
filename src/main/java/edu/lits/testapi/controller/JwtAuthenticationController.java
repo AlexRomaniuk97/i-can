@@ -5,7 +5,9 @@ import java.util.Objects;
 import edu.lits.testapi.model.JwtRequest;
 import edu.lits.testapi.model.JwtResponse;
 import edu.lits.testapi.pojo.User;
+import edu.lits.testapi.service.CardService;
 import edu.lits.testapi.service.JwtUserDetailsService;
+import edu.lits.testapi.service.UserService;
 import edu.lits.testapi.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,8 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtUserDetailsService userDetailsService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
@@ -55,6 +59,7 @@ public class JwtAuthenticationController {
         User user = new User();
         user.setName(authenticationRequest.getUsername());
         user.setPassword(authenticationRequest.getPassword());
-
+        user.setCity("Kyiv");
+        userService.create(user);
     }
 }
