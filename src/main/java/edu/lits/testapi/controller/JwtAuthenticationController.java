@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import edu.lits.testapi.model.JwtRequest;
 import edu.lits.testapi.model.JwtResponse;
+import edu.lits.testapi.pojo.User;
 import edu.lits.testapi.service.JwtUserDetailsService;
 import edu.lits.testapi.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,13 @@ public class JwtAuthenticationController {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
+    }
+
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
+    public void createUser(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        User user = new User();
+        user.setName(authenticationRequest.getUsername());
+        user.setPassword(authenticationRequest.getPassword());
+
     }
 }

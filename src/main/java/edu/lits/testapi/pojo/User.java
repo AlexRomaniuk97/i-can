@@ -11,6 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String password;
     private String city;
     private int rating;
     private int picture_id;
@@ -53,6 +54,14 @@ public class User {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public User() {
