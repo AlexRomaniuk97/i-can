@@ -100,3 +100,23 @@ edu/lits/testapi/pojo/PotentialWorker.java
  edu.lits.testapi.pojo.PotentialWorker
 edu/lits/testapi/configuration/WebSecurityConfig.java
  edu.lits.testapi.configuration.WebSecurityConfig
+edu/lits/testapi/repository/UserRepository.java
+ edu.lits.testapi.repository.UserRepository
+edu/lits/testapi/repository/CardRepository.java
+ edu.lits.testapi.repository.CardRepository
+edu/lits/testapi/model/Filter.java
+ edu.lits.testapi.model.Filter
+edu/lits/testapi/repository/ResumeRepository.java
+ edu.lits.testapi.repository.ResumeRepository
+edu/lits/testapi/controller/JwtAuthenticationEntryPoint.java
+ edu.lits.testapi.controller.JwtAuthenticationEntryPoint
+edu/lits/testapi/repository/PictureRepository.java
+ edu.lits.testapi.repository.PictureRepository
+edu/lits/testapi/controller/JwtRequestFilter.java
+ edu.lits.testapi.controller.JwtRequestFilter
+edu/lits/testapi/repository/CardToPictureRepository.java
+ edu.lits.testapi.repository.CardToPictureRepository
+edu/lits/testapi/pojo/PotentialWorker.java
+ edu.lits.testapi.pojo.PotentialWorker
+edu/lits/testapi/configuration/WebSecurityConfig.java
+ edu.lits.testapi.configuration.WebSecurityConfig
