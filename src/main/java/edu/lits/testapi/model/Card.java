@@ -1,5 +1,6 @@
 package edu.lits.testapi.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Card {
@@ -12,6 +13,9 @@ public class Card {
     public Integer price = 450;
     public String firstMessage = "text_here";
     public String chat = "url_here";
+    public LocalDate dateFrom;
+    public LocalDate dateTo;
+
 
     public String getUserName() {
         return userName;
@@ -83,6 +87,22 @@ public class Card {
 
     public void setChat(String chat) {
         this.chat = chat;
+    }
+
+    public LocalDate getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(LocalDate dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public LocalDate getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(LocalDate dateTo) {
+        this.dateTo = dateTo;
     }
 
     public Card() {

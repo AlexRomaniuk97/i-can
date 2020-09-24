@@ -48,9 +48,13 @@ public class CardController {
     @ResponseBody
     public Card createCard(@RequestBody(required = false) Card userCard) {
         edu.lits.testapi.pojo.Card card = new edu.lits.testapi.pojo.Card();
-        card.setAuthor_id(1L);
-        card.setPrice(123);
-        card.setRating(5);
+        card.setAuthor_id((long) LOGGER_IN_USER_ID);
+        card.setPrice(userCard.getPrice());
+        card.setRating(0);
+        card.setStatus("new");
+        card.setDate_from(userCard.getDateFrom());
+        card.setDate_to(userCard.getDateTo());
+        card.setDescription(userCard.getDescription());
         cardService.create(card);
         return new Card();
 
