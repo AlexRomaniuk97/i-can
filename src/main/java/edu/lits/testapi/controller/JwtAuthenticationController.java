@@ -60,6 +60,7 @@ public class JwtAuthenticationController {
         user.setName(authenticationRequest.getUsername());
         user.setPassword(authenticationRequest.getPassword());
         user.setCity("Kyiv");
+        user.setPicture_id(1);
         userService.create(user);
     }
 }
