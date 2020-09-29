@@ -59,8 +59,8 @@ public class JwtAuthenticationController {
         User user = new User();
         user.setName(authenticationRequest.getUsername());
         user.setPassword(authenticationRequest.getPassword());
-        user.setCity("Kyiv");
-        user.setPicture_id(1);
+        user.setCity(authenticationRequest.getCity());
+        user.setPicture_id(authenticationRequest.getPricture_id());
         userService.create(user);
     }
 }
