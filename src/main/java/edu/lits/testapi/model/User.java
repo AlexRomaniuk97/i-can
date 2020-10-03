@@ -8,7 +8,7 @@ public class User {
     public String location = "Путила";
     public String description = "Я Альберт ремонтую все, що не поламане";
     public int phoneNumber = 4949939;
-    public int rating = 2;
+    public int rating;
     public List<String> UserJobFoto = List.of("url_1", "url_2");
     public String leaveFeedback = "Работнік не очінь, дзеркало не робить";
     public String showFeedback;

@@ -5,20 +5,18 @@ import java.util.List;
 
 public class Card {
     public int id;
-    public String userName = "Андрій";
-    public String userPhoto = "url_here";
-    public List<String> cardListPhoto = List.of("url_1", "url_2");
-    public String location = "Київ";
-    public String description = "Відїжджаю на вихідні. Потрібно покропити сад";
-    public Integer price = 450;
-    public String firstMessage = "text_here";
-    public String chat = "url_here";
-    public LocalDate dateFrom;
-    public LocalDate dateTo;
+    public String userName;
+    public String userPhoto;
+    public List<String> cardListPhoto;
+    public String location;
+    public String description;
+    public Integer price;
+    public String firstMessage;
+    public String chat;
+    public String dateFrom;
+    public String dateTo;
 
-
-    public String getUserName() {
-        return userName;
+    public Card() {
     }
 
     public int getId() {
@@ -27,6 +25,10 @@ public class Card {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public void setUserName(String userName) {
@@ -89,26 +91,21 @@ public class Card {
         this.chat = chat;
     }
 
-    public LocalDate getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(LocalDate dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public LocalDate getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(LocalDate dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
-
-    public Card() {
-    }
-
-
 }
 
 

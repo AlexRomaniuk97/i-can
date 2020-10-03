@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User readByID(Long id) {
-        Optional<User> user =  userRepository.findById(1L);
+        Optional<User> user =  userRepository.findById(id);
         return user.get();
     }
 
@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void create(User user) {
+    public User create(User user) {
         userRepository.save(user);
+        return user;
     }
 }

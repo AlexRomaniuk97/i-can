@@ -1,11 +1,8 @@
 package edu.lits.testapi.controller;
 
-import java.util.Objects;
-
 import edu.lits.testapi.model.JwtRequest;
 import edu.lits.testapi.model.JwtResponse;
 import edu.lits.testapi.pojo.User;
-import edu.lits.testapi.service.CardService;
 import edu.lits.testapi.service.JwtUserDetailsService;
 import edu.lits.testapi.service.UserService;
 import edu.lits.testapi.utils.JwtTokenUtil;

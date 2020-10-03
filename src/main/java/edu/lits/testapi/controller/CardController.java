@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -20,13 +22,32 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
     @GetMapping("/item") //+
     @ResponseBody
-        public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Integer id) {
+        public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Long id) {
         System.out.println("here");
-        return cardService.readByID(id.longValue());
+        edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+        return card;
     }
 
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
     @GetMapping("/list") //+w
     @ResponseBody
     public List<edu.lits.testapi.pojo.Card> getCardList() {
@@ -44,45 +65,13 @@ public class CardController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-    @PostMapping("/create") //+e
-    @ResponseBody
-    public Card createCard(@RequestBody(required = false) Card userCard) {
-        edu.lits.testapi.pojo.Card card = new edu.lits.testapi.pojo.Card();
-        card.setAuthor_id((long) LOGGER_IN_USER_ID);
-        card.setPrice(userCard.getPrice());
-        card.setRating(0);
-        card.setStatus("new");
-        card.setDate_from(userCard.getDateFrom());
-        card.setDate_to(userCard.getDateTo());
-        card.setDescription(userCard.getDescription());
-        cardService.create(card);
-        return new Card();
-
-    }
-
     @GetMapping("/our/list")
     @ResponseBody
-    public Card ourCardList(@RequestParam(required = true) Integer id,
-                            @RequestParam(required = false) List<Card> cardList){
-        System.out.println("here");
-        return new Card();
+    public List<edu.lits.testapi.pojo.Card> ourCardList(@RequestParam Long author_id){
+        List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
+        return cardList;
     }
 
-    @GetMapping("/contact")
-    @ResponseBody
-    public edu.lits.testapi.pojo.Card contactCard(@RequestParam(required = false) Long id) {
-        System.out.println("here");
-        return cardService.readByID(id);
-    }
-//C
-    @GetMapping("/contract")
-    @ResponseBody
-    public edu.lits.testapi.pojo.Card contractCard(@RequestParam(required = false) Long id,
-                                                   @RequestParam(required = false) String firstMassage) {
-        System.out.println("here");
-        return cardService.readByID(id);
-        //contract user
-    }
     @ApiImplicitParams(
             @ApiImplicitParam(
                     name = "Authorization",
@@ -92,12 +81,75 @@ public class CardController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-    @GetMapping("/rate")
+    @PostMapping("/create") //+e
+    @ResponseBody
+    public edu.lits.testapi.pojo.Card createCard(@RequestBody(required = false) Card userCard) {
+        edu.lits.testapi.pojo.Card card = new edu.lits.testapi.pojo.Card();
+        card.setAuthorId((long) LOGGER_IN_USER_ID);
+        card.setPrice(userCard.getPrice());
+        card.setRating(0);
+        card.setStatus("new");
+        card.setDate_from(LocalDate.parse(userCard.getDateFrom()));
+        card.setDate_to(LocalDate.parse(userCard.getDateTo()));
+        card.setDescription(userCard.getDescription());
+        cardService.create(card);
+        return new edu.lits.testapi.pojo.Card();
+
+    }
+
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @GetMapping("/contact")
+    @ResponseBody
+    public edu.lits.testapi.pojo.Card contactCard(@RequestParam(required = false) Long id) {
+        System.out.println("here");
+        return cardService.readByID(id);
+    }
+
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @PostMapping("/contract")
+    @ResponseBody
+    public edu.lits.testapi.pojo.Card contractCard(@RequestParam(required = false) Long id,
+                                                   @RequestParam(required = false) String firstMassage) {
+        System.out.println("here");
+        return cardService.readByID(id);
+        //contract user
+    }
+
+
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+
+    @PostMapping("/rate")
     @ResponseBody
     public edu.lits.testapi.pojo.Card rateCard(@RequestParam(required = false) Long id,
                                                @RequestParam(required = false) int rate) {
-        System.out.println("here");
-        return cardService.readByID(id);
+        edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+        card.setRating(rate);
+        cardService.updateCard(card);
+        return new edu.lits.testapi.pojo.Card();
     }
 
     @ApiImplicitParams(
@@ -208,6 +260,7 @@ public class CardController {
         System.out.println("card/our/confirm");
         return new Card();
     }
+
 
 
 }

@@ -1,17 +1,26 @@
 package edu.lits.testapi.controller;
 
-import edu.lits.testapi.model.Card;
-import edu.lits.testapi.model.User;
+
+import edu.lits.testapi.pojo.User;
+import edu.lits.testapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/item")
+    @ResponseBody
+    public User getUser(@RequestParam(required = true) Long id) {
+        System.out.println("here");
+        edu.lits.testapi.pojo.User user = userService.readByID(id);
+        return user;
+    }
+
     @GetMapping("/leaveFeedback")
     @ResponseBody
     public User leaveFeedback(@RequestParam(required = true) String feedback,
@@ -29,5 +38,15 @@ public class UserController {
                              @RequestParam(required = true) User feedback) {
         System.out.println("here");
         return new User();
+    }
+
+    @PostMapping("/rateUser")
+    @ResponseBody
+    public edu.lits.testapi.pojo.User rateUser(@RequestParam Long id,
+                                               @RequestParam int rating){
+        System.out.println("here");
+        edu.lits.testapi.pojo.User user = new edu.lits.testapi.pojo.User();
+        user.setRating(rating);
+        return userService.create(user);
     }
 }
