@@ -1,6 +1,7 @@
 package edu.lits.testapi.service;
 import edu.lits.testapi.pojo.Card;
 import edu.lits.testapi.repository.CardRepository;
+import org.hibernate.annotations.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,5 +18,7 @@ public interface CardService {
     void updateCard(Card card);
 
     List<Card> readByAuthorId(Long author_id);
+
+    public Double avg();
 
 }

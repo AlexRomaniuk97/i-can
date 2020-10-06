@@ -1,7 +1,9 @@
 package edu.lits.testapi.service;
 import edu.lits.testapi.pojo.Card;
 import edu.lits.testapi.repository.CardRepository;
+import org.hibernate.annotations.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,11 @@ public class CardServicelmpl implements CardService {
     @Override
     public List<Card> readByAuthorId(Long author_id) {
         return cardRepository.findAllByAuthorId_Equals(author_id);
+    }
+
+    @Override
+    public Double avg() {
+        return CardRepository.avg();
     }
 
 

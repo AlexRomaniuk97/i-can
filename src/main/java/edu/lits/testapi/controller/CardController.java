@@ -3,6 +3,7 @@ package edu.lits.testapi.controller;
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
 import edu.lits.testapi.service.CardService;
+import edu.lits.testapi.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class CardController {
 
     @Autowired
     private CardService cardService;
+    private UserService userService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -72,6 +73,12 @@ public class CardController {
         return cardList;
     }
 
+    public List<edu.lits.testapi.pojo.Card> getOurAVG(@RequestParam Long author_id){
+        List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
+        
+        return cardList;
+    }
+
     @ApiImplicitParams(
             @ApiImplicitParam(
                     name = "Authorization",
@@ -93,7 +100,7 @@ public class CardController {
         card.setDate_to(LocalDate.parse(userCard.getDateTo()));
         card.setDescription(userCard.getDescription());
         cardService.create(card);
-        return new edu.lits.testapi.pojo.Card();
+        return card;
 
     }
 
@@ -141,7 +148,6 @@ public class CardController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-
     @PostMapping("/rate")
     @ResponseBody
     public edu.lits.testapi.pojo.Card rateCard(@RequestParam(required = false) Long id,
@@ -149,7 +155,7 @@ public class CardController {
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         card.setRating(rate);
         cardService.updateCard(card);
-        return new edu.lits.testapi.pojo.Card();
+        return card;
     }
 
     @ApiImplicitParams(
@@ -256,7 +262,7 @@ public class CardController {
     @GetMapping("/card/our/confirm")
     @ResponseBody
     public Card confirmOurCard(@RequestParam(required = true) Long cardID,
-                            @RequestParam(required = true) Long userId) {
+                            @RequestParam(required = true) Long authorId) {
         System.out.println("card/our/confirm");
         return new Card();
     }

@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
               "/createUser**",
               "/card/rate**",
               "/user/item**",
-              "/card/create**",
+              "/card/contact**",
               "/card/our/list**").permitAll().
               // all other requests need to be authenticated
                       anyRequest().authenticated().and().
