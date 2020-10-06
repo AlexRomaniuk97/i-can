@@ -1,9 +1,9 @@
-edu/lits/testapi/service/CardToPictureServicelmpl.java
- edu.lits.testapi.service.CardToPictureServicelmpl
+edu/lits/testapi/repository/CardToPictureRepository.java
+ edu.lits.testapi.repository.CardToPictureRepository
 edu/lits/testapi/controller/JwtAuthenticationController.java
  edu.lits.testapi.controller.JwtAuthenticationController
-edu/lits/testapi/pojo/PotentialWorker.java
- edu.lits.testapi.pojo.PotentialWorker
+edu/lits/testapi/configuration/WebSecurityConfig.java
+ edu.lits.testapi.configuration.WebSecurityConfig
 edu/lits/testapi/repository/PotentialWorkerRepository.java
  edu.lits.testapi.repository.PotentialWorkerRepository
 edu/lits/testapi/utils/JwtTokenUtil.java
@@ -20,8 +20,10 @@ edu/lits/testapi/model/UploadFileResponse.java
  edu.lits.testapi.model.UploadFileResponse
 edu/lits/testapi/controller/UserController.java
  edu.lits.testapi.controller.UserController
-edu/lits/testapi/pojo/CardToPicture.java
- edu.lits.testapi.pojo.CardToPicture
+edu/lits/testapi/repository/PictureRepository.java
+ edu.lits.testapi.repository.PictureRepository
+edu/lits/testapi/service/CardModelService.java
+ edu.lits.testapi.service.CardModelService
 edu/lits/testapi/service/UserServiceImpl.java
  edu.lits.testapi.service.UserServiceImpl
 edu/lits/testapi/model/User.java
@@ -42,6 +44,8 @@ edu/lits/testapi/pojo/Resume.java
  edu.lits.testapi.pojo.Resume
 edu/lits/testapi/service/PotentialWorkerService.java
  edu.lits.testapi.service.PotentialWorkerService
+edu/lits/testapi/service/CardService.java
+ edu.lits.testapi.service.CardService
 edu/lits/testapi/service/PotentialWorkerServicelmpl.java
  edu.lits.testapi.service.PotentialWorkerServicelmpl
 edu/lits/testapi/service/JwtUserDetailsService.java
@@ -64,6 +68,8 @@ edu/lits/testapi/controller/ProfessionController.java
  edu.lits.testapi.controller.ProfessionController
 edu/lits/testapi/controller/FilterController.java
  edu.lits.testapi.controller.FilterController
+edu/lits/testapi/pojo/PotentialWorker.java
+ edu.lits.testapi.pojo.PotentialWorker
 edu/lits/testapi/configuration/Swagger2Config.java
  edu.lits.testapi.configuration.Swagger2Config
 edu/lits/testapi/controller/FileController.java
@@ -74,12 +80,12 @@ edu/lits/testapi/model/Card.java
  edu.lits.testapi.model.Card
 edu/lits/testapi/model/CardCreateRequest.java
  edu.lits.testapi.model.CardCreateRequest
-edu/lits/testapi/service/CardToPicrureService.java
- edu.lits.testapi.service.CardToPicrureService
+edu/lits/testapi/controller/JwtRequestFilter.java
+ edu.lits.testapi.controller.JwtRequestFilter
 edu/lits/testapi/controller/SecuredController.java
  edu.lits.testapi.controller.SecuredController
-edu/lits/testapi/service/CardService.java
- edu.lits.testapi.service.CardService
+edu/lits/testapi/controller/CardController.java
+ edu.lits.testapi.controller.CardController
 edu/lits/testapi/repository/UserRepository.java
  edu.lits.testapi.repository.UserRepository
 edu/lits/testapi/repository/CardRepository.java
@@ -90,13 +96,13 @@ edu/lits/testapi/repository/ResumeRepository.java
  edu.lits.testapi.repository.ResumeRepository
 edu/lits/testapi/controller/JwtAuthenticationEntryPoint.java
  edu.lits.testapi.controller.JwtAuthenticationEntryPoint
-edu/lits/testapi/repository/PictureRepository.java
- edu.lits.testapi.repository.PictureRepository
-edu/lits/testapi/controller/JwtRequestFilter.java
- edu.lits.testapi.controller.JwtRequestFilter
-edu/lits/testapi/repository/CardToPictureRepository.java
- edu.lits.testapi.repository.CardToPictureRepository
-edu/lits/testapi/configuration/WebSecurityConfig.java
- edu.lits.testapi.configuration.WebSecurityConfig
-edu/lits/testapi/controller/CardController.java
- edu.lits.testapi.controller.CardController
+edu/lits/testapi/repository/CardModelRepository.java
+ edu.lits.testapi.repository.CardModelRepository
+edu/lits/testapi/service/CardModelServiseImpl.java
+ edu.lits.testapi.service.CardModelServiseImpl
+edu/lits/testapi/service/CardToPictureServicelmpl.java
+ edu.lits.testapi.service.CardToPictureServicelmpl
+edu/lits/testapi/service/CardToPicrureService.java
+ edu.lits.testapi.service.CardToPicrureService
+edu/lits/testapi/pojo/CardToPicture.java
+ edu.lits.testapi.pojo.CardToPicture

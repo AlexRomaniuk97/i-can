@@ -9,7 +9,7 @@ public class CardToPicture {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-        private Long card_id;
+        private Long cardId;
         private Long picture_id;
 
     public CardToPicture() {
@@ -23,12 +23,12 @@ public class CardToPicture {
         this.id = id;
     }
 
-    public Long getCard_id() {
-        return card_id;
+    public Long getCardId() {
+        return cardId;
     }
 
-    public void setCard_id(Long card_id) {
-        this.card_id = card_id;
+    public void setCardId(Long cardId) {
+        this.cardId = cardId;
     }
 
     public Long getPicture_id() {

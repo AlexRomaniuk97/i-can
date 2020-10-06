@@ -2,6 +2,9 @@ package edu.lits.testapi.controller;
 
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
+import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.repository.CardRepository;
+import edu.lits.testapi.service.CardModelService;
 import edu.lits.testapi.service.CardService;
 import edu.lits.testapi.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,6 +26,7 @@ public class CardController {
     @Autowired
     private CardService cardService;
     private UserService userService;
+    private CardModelService cardModelService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -34,7 +39,7 @@ public class CardController {
                     example = "Bearer access_token"))
     @GetMapping("/item") //+
     @ResponseBody
-        public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Long id) {
+    public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Long id) {
         System.out.println("here");
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         return card;
@@ -68,14 +73,14 @@ public class CardController {
                     example = "Bearer access_token"))
     @GetMapping("/our/list")
     @ResponseBody
-    public List<edu.lits.testapi.pojo.Card> ourCardList(@RequestParam Long author_id){
+    public List<edu.lits.testapi.pojo.Card> ourCardList(@RequestParam Long author_id) {
         List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
         return cardList;
     }
 
-    public List<edu.lits.testapi.pojo.Card> getOurAVG(@RequestParam Long author_id){
+    public List<edu.lits.testapi.pojo.Card> getOurAVG(@RequestParam Long author_id) {
         List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
-        
+
         return cardList;
     }
 
@@ -115,9 +120,18 @@ public class CardController {
                     example = "Bearer access_token"))
     @GetMapping("/contact")
     @ResponseBody
-    public edu.lits.testapi.pojo.Card contactCard(@RequestParam(required = false) Long id) {
-        System.out.println("here");
-        return cardService.readByID(id);
+    public Card contactCard(@RequestParam(required = false) Long id,
+                            @RequestParam(required = true) String firstMessage) {
+        edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+        List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
+        Card modelCard = new Card();
+        modelCard.setId(card.getId());
+        //modelCard.setCardListPhoto();
+        modelCard.setUserName(card.getName());
+        modelCard.setDescription(card.getDescription());
+        modelCard.setPrice(card.getPrice());
+        modelCard.setChat(firstMessage);
+        return modelCard;
     }
 
     @ApiImplicitParams(
@@ -262,11 +276,10 @@ public class CardController {
     @GetMapping("/card/our/confirm")
     @ResponseBody
     public Card confirmOurCard(@RequestParam(required = true) Long cardID,
-                            @RequestParam(required = true) Long authorId) {
+                               @RequestParam(required = true) Long authorId) {
         System.out.println("card/our/confirm");
         return new Card();
     }
-
 
 
 }

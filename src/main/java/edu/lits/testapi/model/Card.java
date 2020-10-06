@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Card {
-    public int id;
+    public Long id;
     public String userName;
     public String userPhoto;
     public List<String> cardListPhoto;
@@ -19,11 +19,11 @@ public class Card {
     public Card() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
