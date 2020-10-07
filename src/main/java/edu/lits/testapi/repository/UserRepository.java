@@ -15,5 +15,6 @@ import static springfox.documentation.builders.Parameters.withName;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByName(String name);
+    Optional<User> findById(Long id);
 
 }

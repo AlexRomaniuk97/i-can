@@ -3,6 +3,7 @@ package edu.lits.testapi.controller;
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
 import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.pojo.User;
 import edu.lits.testapi.repository.CardRepository;
 import edu.lits.testapi.service.CardModelService;
 import edu.lits.testapi.service.CardService;
@@ -25,8 +26,9 @@ public class CardController {
 
     @Autowired
     private CardService cardService;
-    private UserService userService;
     private CardModelService cardModelService;
+    @Autowired
+    private UserService userService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -101,8 +103,8 @@ public class CardController {
         card.setPrice(userCard.getPrice());
         card.setRating(0);
         card.setStatus("new");
-        card.setDate_from(LocalDate.parse(userCard.getDateFrom()));
-        card.setDate_to(LocalDate.parse(userCard.getDateTo()));
+        card.setDate_from(userCard.getDateFrom());
+        card.setDate_to(userCard.getDateTo());
         card.setDescription(userCard.getDescription());
         cardService.create(card);
         return card;
@@ -120,17 +122,26 @@ public class CardController {
                     example = "Bearer access_token"))
     @GetMapping("/contact")
     @ResponseBody
-    public Card contactCard(@RequestParam(required = false) Long id,
-                            @RequestParam(required = true) String firstMessage) {
+    public Card contactCard(@RequestParam(required = false) Long id
+//                            @RequestParam(required = true) String firstMessage
+    ){
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
-        List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
+        Long userLocation = card.getAuthorId();
+        //User user = userService.readByID(userLocation);
+        //edu.lits.testapi.pojo.User user = userService.readByID(userLocation);
+       // List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
+        System.out.println("here");
         modelCard.setId(card.getId());
         //modelCard.setCardListPhoto();
+        modelCard.setDescription(card.getDescription());
+        modelCard.setDateFrom(card.getDate_from());
+        modelCard.setDateTo(card.getDate_to());
+        modelCard.setLocation(userService.readByID(userLocation).getCity());
         modelCard.setUserName(card.getName());
         modelCard.setDescription(card.getDescription());
         modelCard.setPrice(card.getPrice());
-        modelCard.setChat(firstMessage);
+        //modelCard.setChat(firstMessage);
         return modelCard;
     }
 

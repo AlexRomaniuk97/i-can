@@ -13,8 +13,8 @@ public class Card {
     public Integer price;
     public String firstMessage;
     public String chat;
-    public String dateFrom;
-    public String dateTo;
+    LocalDate dateFrom;
+    LocalDate dateTo;
 
     public Card() {
     }
@@ -91,19 +91,19 @@ public class Card {
         this.chat = chat;
     }
 
-    public String getDateFrom() {
+    public LocalDate getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(String dateFrom) {
+    public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public String getDateTo() {
+    public LocalDate getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(String dateTo) {
+    public void setDateTo(LocalDate dateTo) {
         this.dateTo = dateTo;
     }
 }
