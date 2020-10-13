@@ -1,4 +1,5 @@
 package edu.lits.testapi.service;
+import edu.lits.testapi.pojo.Card;
 import edu.lits.testapi.pojo.PotentialWorker;
 import edu.lits.testapi.repository.PotentialWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,10 @@ public class PotentialWorkerServicelmpl implements PotentialWorkerService {
     public PotentialWorker readByID(Long user_id) {
         Optional<PotentialWorker> potentialWorker =  potentialWorkerRepository.findById(1L);
         return potentialWorker.get();
+    }
+
+    @Override
+    public void create(PotentialWorker potentialWorker) {
+        potentialWorkerRepository.save(potentialWorker);
     }
 }

@@ -3,10 +3,12 @@ package edu.lits.testapi.controller;
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
 import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.pojo.PotentialWorker;
 import edu.lits.testapi.pojo.User;
 import edu.lits.testapi.repository.CardRepository;
 import edu.lits.testapi.service.CardModelService;
 import edu.lits.testapi.service.CardService;
+import edu.lits.testapi.service.PotentialWorkerService;
 import edu.lits.testapi.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,13 +24,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/card")
 public class CardController {
-    private static final int LOGGER_IN_USER_ID = 1;
+    private static final int LOGGER_IN_USER_ID = 2;
 
     @Autowired
     private CardService cardService;
     private CardModelService cardModelService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PotentialWorkerService potentialWorkerService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -108,7 +112,26 @@ public class CardController {
         card.setDescription(userCard.getDescription());
         cardService.create(card);
         return card;
+    }
 
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @PostMapping("/contract")
+    @ResponseBody
+    public edu.lits.testapi.pojo.PotentialWorker contractCard(@RequestBody(required = false)Card userCard) {
+        PotentialWorker potentialWorker = new PotentialWorker();
+        potentialWorker.setUser_id((long) LOGGER_IN_USER_ID);
+        potentialWorker.setCard_id(userCard.getId());
+        potentialWorker.setMessage(userCard.getFirstMessage());
+        potentialWorkerService.create(potentialWorker);
+        return potentialWorker;
     }
 
     @ApiImplicitParams(
@@ -122,9 +145,7 @@ public class CardController {
                     example = "Bearer access_token"))
     @GetMapping("/contact")
     @ResponseBody
-    public Card contactCard(@RequestParam(required = false) Long id
-//                            @RequestParam(required = true) String firstMessage
-    ){
+    public Card contactCard(@RequestParam(required = false) Long id){
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         Long userLocation = card.getAuthorId();
         //User user = userService.readByID(userLocation);
@@ -145,23 +166,6 @@ public class CardController {
         return modelCard;
     }
 
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @PostMapping("/contract")
-    @ResponseBody
-    public edu.lits.testapi.pojo.Card contractCard(@RequestParam(required = false) Long id,
-                                                   @RequestParam(required = false) String firstMassage) {
-        System.out.println("here");
-        return cardService.readByID(id);
-        //contract user
-    }
 
 
     @ApiImplicitParams(
