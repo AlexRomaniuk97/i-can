@@ -148,13 +148,15 @@ public class CardController {
     public Card contactCard(@RequestParam(required = false) Long id){
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         Long userLocation = card.getAuthorId();
-        //User user = userService.readByID(userLocation);
+        User user = userService.readByID(userLocation);
         //edu.lits.testapi.pojo.User user = userService.readByID(userLocation);
        // List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
         System.out.println("here");
         modelCard.setId(card.getId());
+        String pictureId = modelCard.getUserName();
         //modelCard.setCardListPhoto();
+        //modelCard.setUserPhoto(card.get);
         modelCard.setDescription(card.getDescription());
         modelCard.setDateFrom(card.getDate_from());
         modelCard.setDateTo(card.getDate_to());
