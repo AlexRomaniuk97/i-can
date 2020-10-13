@@ -73,10 +73,13 @@ public class CardController {
 
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();
-        edu.lits.testapi.pojo.User logedInUser = userService.readByUserName(username);
-        card.setStatus("DONE");
-        cardService.updateCard(card);
-        return card;
+        edu.lits.testapi.pojo.User loggedInUser = userService.readByUserName(username);
+        if (loggedInUser.getId() == card.getAuthorId()) {
+            card.setStatus("DONE");
+            cardService.updateCard(card);
+        }
+            return card;
+
     }
 
 
