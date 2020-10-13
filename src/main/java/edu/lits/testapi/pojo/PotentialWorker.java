@@ -8,8 +8,8 @@ public class PotentialWorker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long user_id;
-    private Long card_id;
+    private Long userId;
+    private Long cardId;
     private int status;
     private String message;
 
@@ -17,19 +17,19 @@ public class PotentialWorker {
     }
 
     public Long getUser_id() {
-        return user_id;
+        return userId;
     }
 
     public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public Long getCard_id() {
-        return card_id;
+        return cardId;
     }
 
     public void setCard_id(Long card_id) {
-        this.card_id = card_id;
+        this.cardId = card_id;
     }
 
     public int getStatus() {

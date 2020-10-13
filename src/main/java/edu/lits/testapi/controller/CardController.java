@@ -70,6 +70,7 @@ public class CardController {
     @ResponseBody
     public edu.lits.testapi.pojo.Card getCardDone(@RequestParam(required = true) Long id) {
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+        edu.lits.testapi.pojo.PotentialWorker potentialWorker = potentialWorkerService.readByCardId(id);
 
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = user.getUsername();

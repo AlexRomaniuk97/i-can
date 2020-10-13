@@ -18,8 +18,15 @@ public class PotentialWorkerServicelmpl implements PotentialWorkerService {
         return potentialWorker.get();
     }
 
+
+
     @Override
     public void create(PotentialWorker potentialWorker) {
         potentialWorkerRepository.save(potentialWorker);
+    }
+
+    @Override
+    public PotentialWorker readByCardId(Long card_id) {
+        return potentialWorkerRepository.findAllByCardId_Equals(card_id);
     }
 }
