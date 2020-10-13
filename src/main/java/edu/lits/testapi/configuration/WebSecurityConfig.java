@@ -49,6 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       httpSecurity.csrf().disable()
               // dont authenticate this particular request
               .authorizeRequests().antMatchers("/authenticate",
+              "i-can-project.herokuapp.com",
+              "herokuapp.com**",
               "/swagger-ui.html",
               "/swagger-resources/**",
               "/v2/api-docs",

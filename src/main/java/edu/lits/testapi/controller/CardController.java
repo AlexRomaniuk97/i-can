@@ -72,7 +72,7 @@ public class CardController {
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         edu.lits.testapi.pojo.PotentialWorker potentialWorker = potentialWorkerService.readByCardId(id);
 
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // 3 rows for logged user
         String username = user.getUsername();
         edu.lits.testapi.pojo.User loggedInUser = userService.readByUserName(username);
         if (loggedInUser.getId() == card.getAuthorId()) {
@@ -82,13 +82,6 @@ public class CardController {
             return card;
 
     }
-
-
-
-
-
-
-
 
     @ApiImplicitParams(
             @ApiImplicitParam(

@@ -36,7 +36,7 @@ public class FileController {
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         Picture dbFile = pictureStorageService.storeFile(file);
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()// i need !
                 .path("/downloadFile/")
                 .path(dbFile.getId().toString())
                 .toUriString();
