@@ -4,7 +4,7 @@ import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
 import edu.lits.testapi.pojo.CardToPicture;
 import edu.lits.testapi.pojo.PotentialWorker;
-import edu.lits.testapi.pojo.User;
+//import edu.lits.testapi.pojo.User;
 import edu.lits.testapi.repository.CardRepository;
 import edu.lits.testapi.service.CardModelService;
 import edu.lits.testapi.service.CardService;
@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +48,43 @@ public class CardController {
     @GetMapping("/item") //+
     @ResponseBody
     public edu.lits.testapi.pojo.Card getCard(@RequestParam(required = true) Long id) {
-        System.out.println("here");
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+
         return card;
     }
+
+
+
+
+
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @GetMapping("/cardDone") //+
+    @ResponseBody
+    public edu.lits.testapi.pojo.Card getCardDone(@RequestParam(required = true) Long id) {
+        edu.lits.testapi.pojo.Card card = cardService.readByID(id);
+
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        edu.lits.testapi.pojo.User logedInUser = userService.readByUserName(username);
+        card.setStatus("DONE");
+        cardService.updateCard(card);
+        return card;
+    }
+
+
+
+
+
+
+
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -147,9 +182,9 @@ public class CardController {
     @ResponseBody
     public Card contactCard(@RequestParam(required = false) Long id){
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
-        Long userLocation = card.getAuthorId();
-        User user = userService.readByID(userLocation);
-        //edu.lits.testapi.pojo.User user = userService.readByID(userLocation);
+        Long userId = card.getAuthorId();
+        edu.lits.testapi.pojo.User user = userService.readByID(userId);
+        //edu.lits.testapi.pojo.User user = userService.readByID(userId);
        // List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
         System.out.println("here");
@@ -160,7 +195,7 @@ public class CardController {
         modelCard.setDescription(card.getDescription());
         modelCard.setDateFrom(card.getDate_from());
         modelCard.setDateTo(card.getDate_to());
-        modelCard.setLocation(userService.readByID(userLocation).getCity());
+        modelCard.setLocation(userService.readByID(userId).getCity());
         modelCard.setUserName(card.getName());
         modelCard.setDescription(card.getDescription());
         modelCard.setPrice(card.getPrice());
