@@ -14,13 +14,13 @@ public class User {
     private String password;
     private String city;
     private int rating;
-    private int picture_id;
+    private String picture_id;
 
-    public int getPicture_id() {
+    public String getPicture_id() {
         return picture_id;
     }
 
-    public void setPicture_id(int picture_id) {
+    public void setPicture_id(String picture_id) {
         this.picture_id = picture_id;
     }
 

@@ -3,13 +3,11 @@ package edu.lits.testapi.controller;
 import edu.lits.testapi.model.Card;
 import edu.lits.testapi.model.Response;
 import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.pojo.Picture;
 import edu.lits.testapi.pojo.PotentialWorker;
 //import edu.lits.testapi.pojo.User;
 import edu.lits.testapi.repository.CardRepository;
-import edu.lits.testapi.service.CardModelService;
-import edu.lits.testapi.service.CardService;
-import edu.lits.testapi.service.PotentialWorkerService;
-import edu.lits.testapi.service.UserService;
+import edu.lits.testapi.service.*;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +33,7 @@ public class CardController {
     private UserService userService;
     @Autowired
     private PotentialWorkerService potentialWorkerService;
+    private PictureService pictureService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -155,9 +154,9 @@ public class CardController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-    @PostMapping("/contract")
+    @PostMapping("/contact")
     @ResponseBody
-    public edu.lits.testapi.pojo.PotentialWorker contractCard(@RequestBody(required = false)Card userCard) {
+    public edu.lits.testapi.pojo.PotentialWorker contactCard(@RequestBody(required = false)Card userCard) {
         PotentialWorker potentialWorker = new PotentialWorker();
         potentialWorker.setUser_id((long) LOGGER_IN_USER_ID);
         potentialWorker.setCard_id(userCard.getId());
@@ -175,20 +174,20 @@ public class CardController {
                     paramType = "header",
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
-    @GetMapping("/contact")
+    @GetMapping("/cardView")
     @ResponseBody
-    public Card contactCard(@RequestParam(required = false) Long id){
+    public Card cardView(@RequestParam(required = false) Long id){
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
         Long userId = card.getAuthorId();
         edu.lits.testapi.pojo.User user = userService.readByID(userId);
-        //edu.lits.testapi.pojo.User user = userService.readByID(userId);
-       // List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
+        String pictureId = user.getPicture_id();
+        System.out.println();
+        //Picture picture = pictureService.readByID(pictureId);
+        List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
-        System.out.println("here");
         modelCard.setId(card.getId());
-        String pictureId = modelCard.getUserName();
-        //modelCard.setCardListPhoto();
-        //modelCard.setUserPhoto(card.get);
+       // modelCard.setCardListPhoto(cardModelService.readByCardId(id));
+        modelCard.setUserPhoto(pictureId);
         modelCard.setDescription(card.getDescription());
         modelCard.setDateFrom(card.getDate_from());
         modelCard.setDateTo(card.getDate_to());
@@ -200,7 +199,21 @@ public class CardController {
         return modelCard;
     }
 
-
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "Access Token",
+                    required = true,
+                    allowEmptyValue = false,
+                    paramType = "header",
+                    dataTypeClass = String.class,
+                    example = "Bearer access_token"))
+    @GetMapping("/possibleWorkers")
+    @ResponseBody
+    public PotentialWorker potentialWorker(@RequestParam Long id){
+        List<PotentialWorker> potentialWorkers = (List<PotentialWorker>) potentialWorkerService.readByCardId(id);
+        return (PotentialWorker) potentialWorkers;
+    }
 
     @ApiImplicitParams(
             @ApiImplicitParam(

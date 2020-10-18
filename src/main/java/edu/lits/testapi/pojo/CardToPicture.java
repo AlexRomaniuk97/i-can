@@ -10,7 +10,7 @@ public class CardToPicture {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private Long cardId;
-        private Long picture_id;
+        private String picture_id;
 
     public CardToPicture() {
     }
@@ -31,11 +31,11 @@ public class CardToPicture {
         this.cardId = cardId;
     }
 
-    public Long getPicture_id() {
+    public String getPicture_id() {
         return picture_id;
     }
 
-    public void setPicture_id(Long picture_id) {
+    public void setPicture_id(String picture_id) {
         this.picture_id = picture_id;
     }
 }

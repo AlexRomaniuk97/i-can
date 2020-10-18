@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class JwtRequest implements Serializable {
     private String username;
     private String password;
-    private Integer pricture_id;
+    private String pricture_id;
     private String city;
 
     public JwtRequest() {
@@ -36,11 +36,11 @@ public class JwtRequest implements Serializable {
         this.password = password;
     }
 
-    public Integer getPricture_id() {
+    public String getPricture_id() {
         return pricture_id;
     }
 
-    public void setPricture_id(Integer pricture_id) {
+    public void setPricture_id(String pricture_id) {
         this.pricture_id = pricture_id;
     }
 
