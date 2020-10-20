@@ -10,10 +10,10 @@ public class CardToPictureServicelmpl implements CardToPicrureService {
     @Autowired
     private CardToPictureRepository card_to_pictureRepository;
 
-    @Override
-    public CardToPicture readByID(Long id) {
-        Optional<CardToPicture> card_to_picture =  card_to_pictureRepository.findById(1L);
-        return card_to_picture.get();
-    }
+//    @Override
+//    public CardToPicture readByID(String id) {
+//        Optional<CardToPicture> card_to_picture =  card_to_pictureRepository.findById(id);
+//        return card_to_picture.get();
+//    }
 
 }

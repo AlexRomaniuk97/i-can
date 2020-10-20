@@ -34,6 +34,8 @@ public class CardController {
     @Autowired
     private PotentialWorkerService potentialWorkerService;
     private PictureService pictureService;
+    @Autowired
+    private CardToPicrureService cardToPicrureService;
 
     @ApiImplicitParams(
             @ApiImplicitParam(

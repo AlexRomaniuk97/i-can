@@ -1,5 +1,7 @@
 package edu.lits.testapi.controller;
 
+import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.service.CardToPicrureService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import edu.lits.testapi.model.UploadFileResponse;
@@ -16,6 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +29,8 @@ public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(edu.lits.testapi.controller.FileController.class);
     @Autowired
     private PictureStorageService pictureStorageService;
+    @Autowired
+    private CardToPicrureService cardToPicrureService;
     @ApiImplicitParams(
             @ApiImplicitParam(
                     name = "Authorization",
@@ -53,11 +60,21 @@ public class FileController {
                     dataTypeClass = String.class,
                     example = "Bearer access_token"))
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadFile(file))
-                .collect(Collectors.toList());
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {//айдішку картки
+        ArrayList<UploadFileResponse> uploadFileResponses = new ArrayList<>();
+        for(MultipartFile file : files){
+
+            CardToPicture dbFile = pictureStorageService.storeFiles(file);
+            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()// i need !
+                    .path("/downloadFile/")
+                    .path(dbFile.getId().toString())
+                    .toUriString();
+
+            UploadFileResponse uploadFileResponse = new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+                    file.getContentType(), file.getSize());
+            uploadFileResponses.add(uploadFileResponse);
+        }
+        return uploadFileResponses;
     }
     @ApiImplicitParams(
             @ApiImplicitParam(
