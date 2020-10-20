@@ -4,6 +4,9 @@ import edu.lits.testapi.pojo.PotentialWorker;
 import edu.lits.testapi.repository.PotentialWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -13,8 +16,8 @@ public class PotentialWorkerServicelmpl implements PotentialWorkerService {
     private PotentialWorkerRepository potentialWorkerRepository;
 
     @Override
-    public PotentialWorker readByID(Long user_id) {
-        Optional<PotentialWorker> potentialWorker =  potentialWorkerRepository.findById(1L);
+    public PotentialWorker readByID(Long id) {
+        Optional<PotentialWorker> potentialWorker =  potentialWorkerRepository.findById(id);
         return potentialWorker.get();
     }
 
@@ -26,7 +29,12 @@ public class PotentialWorkerServicelmpl implements PotentialWorkerService {
     }
 
     @Override
-    public PotentialWorker readByCardId(Long card_id) {
+    public void updateWorker(PotentialWorker potentialWorker) {
+        potentialWorkerRepository.save(potentialWorker);
+    }
+
+    @Override
+    public List<PotentialWorker> readByCardId(Long card_id) {
         return potentialWorkerRepository.findAllByCardId_Equals(card_id);
     }
 }
