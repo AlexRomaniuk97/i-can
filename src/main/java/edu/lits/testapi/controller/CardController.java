@@ -149,7 +149,6 @@ public class CardController {
         return cardList;
     }
 
-
     @ApiImplicitParams(
             @ApiImplicitParam(
                     name = "Authorization",

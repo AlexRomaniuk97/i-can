@@ -7,12 +7,15 @@ import edu.lits.testapi.service.JwtUserDetailsService;
 import edu.lits.testapi.service.UserService;
 import edu.lits.testapi.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +33,12 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
@@ -53,11 +62,13 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public void createUser(@RequestBody JwtRequest authenticationRequest) throws Exception {
+
         User user = new User();
+
         user.setName(authenticationRequest.getUsername());
-        user.setPassword(authenticationRequest.getPassword());
+        user.setPassword(passwordEncoder.encode(authenticationRequest.getPassword()));
         user.setCity(authenticationRequest.getCity());
-        user.setPicture_id(authenticationRequest.getPricture_id());
+
         userService.create(user);
     }
 }
