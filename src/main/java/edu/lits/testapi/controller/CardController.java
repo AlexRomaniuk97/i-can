@@ -22,7 +22,6 @@ public class CardController {
 
     @Autowired
     private CardService cardService;
-   // private CardModelService cardModelService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -205,25 +204,7 @@ public class CardController {
         return cardList;
     }
 
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/our/list")
-    @ResponseBody
-    public List<edu.lits.testapi.pojo.Card> ourCardList(@RequestParam Long author_id) {
-        return cardService.readByAuthorId(author_id);
-    }
 
-    public List<edu.lits.testapi.pojo.Card> getOurAVG(@RequestParam Long author_id) {
-
-        return cardService.readByAuthorId(author_id);
-    }
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -238,14 +219,24 @@ public class CardController {
     @ResponseBody
     public edu.lits.testapi.pojo.Card createCard(@RequestBody(required = false) Card userCard) {
         edu.lits.testapi.pojo.Card card = new edu.lits.testapi.pojo.Card();
-        card.setAuthorId((long) LOGGER_IN_USER_ID);
-        card.setPrice(userCard.getPrice());
-        card.setRating(0);
-        card.setStatus("new");
-        card.setDate_from(userCard.getDateFrom());
-        card.setDate_to(userCard.getDateTo());
-        card.setDescription(userCard.getDescription());
-        cardService.create(card);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        edu.lits.testapi.pojo.User loggedInUser = userService.readByUserName(username);
+
+            card.setAuthorId(loggedInUser.getId());
+            card.setPrice(userCard.getPrice());
+            card.setRating(0);
+            card.setStatus("NEW");
+            card.setDate_from(userCard.getDateFrom());
+            card.setDate_to(userCard.getDateTo());
+            card.setName(userCard.getName());
+            card.setDescription(userCard.getDescription());
+
+            cardService.create(card);
+
+
+
+
         return card;
     }
 
@@ -285,12 +276,8 @@ public class CardController {
         Long userId = card.getAuthorId();
         edu.lits.testapi.pojo.User user = userService.readByID(userId);
         String pictureId = user.getPicture_id();
-        System.out.println();
-        //Picture picture = pictureService.readByID(pictureId);
-        //List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
         modelCard.setId(card.getId());
-        // modelCard.setCardListPhoto(cardModelService.readByCardId(id));
         modelCard.setUserPhoto(pictureId);
         modelCard.setDescription(card.getDescription());
         modelCard.setDateFrom(card.getDate_from());
@@ -299,7 +286,7 @@ public class CardController {
         modelCard.setUserName(card.getName());
         modelCard.setDescription(card.getDescription());
         modelCard.setPrice(card.getPrice());
-        //modelCard.setChat(firstMessage);
+
         return modelCard;
     }
 

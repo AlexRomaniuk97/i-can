@@ -30,8 +30,8 @@ edu/lits/testapi/service/CardServicelmpl.java
  edu.lits.testapi.service.CardServicelmpl
 edu/lits/testapi/service/ProfessionService.java
  edu.lits.testapi.service.ProfessionService
-edu/lits/testapi/controller/CardController.java
- edu.lits.testapi.controller.CardController
+edu/lits/testapi/model/JwtRequest.java
+ edu.lits.testapi.model.JwtRequest
 edu/lits/testapi/pojo/Profession.java
  edu.lits.testapi.pojo.Profession
 edu/lits/testapi/service/ResumeServiceImpl.java
@@ -52,8 +52,8 @@ edu/lits/testapi/pojo/Card.java
  edu.lits.testapi.pojo.Card
 edu/lits/testapi/pojo/User.java
  edu.lits.testapi.pojo.User
-edu/lits/testapi/controller/ResumeController.java
- edu.lits.testapi.controller.ResumeController
+edu/lits/testapi/controller/JwtRequestFilter.java
+ edu.lits.testapi.controller.JwtRequestFilter
 edu/lits/testapi/service/PictureServiceImpl.java
  edu.lits.testapi.service.PictureServiceImpl
 edu/lits/testapi/model/Response.java
@@ -74,8 +74,8 @@ edu/lits/testapi/pojo/Picture.java
  edu.lits.testapi.pojo.Picture
 edu/lits/testapi/pojo/PotentialWorker.java
  edu.lits.testapi.pojo.PotentialWorker
-edu/lits/testapi/model/Card.java
- edu.lits.testapi.model.Card
+edu/lits/testapi/controller/JwtAuthenticationController.java
+ edu.lits.testapi.controller.JwtAuthenticationController
 edu/lits/testapi/model/CardCreateRequest.java
  edu.lits.testapi.model.CardCreateRequest
 edu/lits/testapi/repository/CardToPictureRepository.java
@@ -100,9 +100,9 @@ edu/lits/testapi/controller/FileController.java
  edu.lits.testapi.controller.FileController
 edu/lits/testapi/service/CardToPicrureService.java
  edu.lits.testapi.service.CardToPicrureService
-edu/lits/testapi/controller/JwtRequestFilter.java
- edu.lits.testapi.controller.JwtRequestFilter
-edu/lits/testapi/model/JwtRequest.java
- edu.lits.testapi.model.JwtRequest
-edu/lits/testapi/controller/JwtAuthenticationController.java
- edu.lits.testapi.controller.JwtAuthenticationController
+edu/lits/testapi/model/Card.java
+ edu.lits.testapi.model.Card
+edu/lits/testapi/controller/CardController.java
+ edu.lits.testapi.controller.CardController
+edu/lits/testapi/controller/ResumeController.java
+ edu.lits.testapi.controller.ResumeController

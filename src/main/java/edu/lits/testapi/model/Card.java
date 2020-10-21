@@ -6,13 +6,13 @@ import java.util.List;
 public class Card {
     public Long id;
     public String userName;
+    public String name;
     public String userPhoto;
     public List<String> cardListPhoto;
     public String location;
     public String description;
     public Integer price;
     public String firstMessage;
-    public String chat;
     LocalDate dateFrom;
     LocalDate dateTo;
 
@@ -29,6 +29,14 @@ public class Card {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUserName(String userName) {
@@ -81,14 +89,6 @@ public class Card {
 
     public void setFirstMessage(String firstMessage) {
         this.firstMessage = firstMessage;
-    }
-
-    public String getChat() {
-        return chat;
-    }
-
-    public void setChat(String chat) {
-        this.chat = chat;
     }
 
     public LocalDate getDateFrom() {
