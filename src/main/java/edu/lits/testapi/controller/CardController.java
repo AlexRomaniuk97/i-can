@@ -1,23 +1,17 @@
 package edu.lits.testapi.controller;
 
 import edu.lits.testapi.model.Card;
-import edu.lits.testapi.model.Response;
 import edu.lits.testapi.pojo.CardToPicture;
-import edu.lits.testapi.pojo.Picture;
 import edu.lits.testapi.pojo.PotentialWorker;
-//import edu.lits.testapi.pojo.User;
-import edu.lits.testapi.repository.CardRepository;
 import edu.lits.testapi.service.*;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +22,12 @@ public class CardController {
 
     @Autowired
     private CardService cardService;
-    private CardModelService cardModelService;
+   // private CardModelService cardModelService;
     @Autowired
     private UserService userService;
     @Autowired
     private PotentialWorkerService potentialWorkerService;
+    @Autowired
     private PictureService pictureService;
     @Autowired
     private CardToPicrureService cardToPicrureService;
@@ -68,7 +63,6 @@ public class CardController {
     @ResponseBody
     public edu.lits.testapi.pojo.Card getCardDone(@RequestParam(required = true) Long id) {
         edu.lits.testapi.pojo.Card card = cardService.readByID(id);
-        List<edu.lits.testapi.pojo.PotentialWorker> potentialWorkerList = potentialWorkerService.readByCardId(id);
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // 3 rows for logged user
         String username = user.getUsername();
@@ -195,12 +189,6 @@ public class CardController {
 
 
 
-
-
-
-
-
-
     @ApiImplicitParams(
             @ApiImplicitParam(
                     name = "Authorization",
@@ -230,14 +218,12 @@ public class CardController {
     @GetMapping("/our/list")
     @ResponseBody
     public List<edu.lits.testapi.pojo.Card> ourCardList(@RequestParam Long author_id) {
-        List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
-        return cardList;
+        return cardService.readByAuthorId(author_id);
     }
 
     public List<edu.lits.testapi.pojo.Card> getOurAVG(@RequestParam Long author_id) {
-        List<edu.lits.testapi.pojo.Card> cardList = cardService.readByAuthorId(author_id);
 
-        return cardList;
+        return cardService.readByAuthorId(author_id);
     }
 
     @ApiImplicitParams(
@@ -302,7 +288,7 @@ public class CardController {
         String pictureId = user.getPicture_id();
         System.out.println();
         //Picture picture = pictureService.readByID(pictureId);
-        List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
+        //List<CardToPicture> cardToPictures = cardModelService.readByCardId(id);
         Card modelCard = new Card();
         modelCard.setId(card.getId());
         // modelCard.setCardListPhoto(cardModelService.readByCardId(id));
@@ -318,21 +304,6 @@ public class CardController {
         return modelCard;
     }
 
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/possibleWorkers")
-    @ResponseBody
-    public PotentialWorker potentialWorker(@RequestParam Long id) {
-        List<PotentialWorker> potentialWorkers = (List<PotentialWorker>) potentialWorkerService.readByCardId(id);
-        return (PotentialWorker) potentialWorkers;
-    }
 
     @ApiImplicitParams(
             @ApiImplicitParam(
@@ -352,92 +323,4 @@ public class CardController {
         cardService.updateCard(card);
         return card;
     }
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/update")
-    @ResponseBody
-    public Card updateCard(@RequestParam(required = true) Card userCard,
-                           @RequestParam(required = true) Long cardID) {
-        System.out.println("here");
-        return new Card();
-    }
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/subscribe")
-    @ResponseBody
-    public Card subscribeToCard(@RequestParam(required = true) Integer userWorkerID,
-                                @RequestParam(required = true) Integer CardID) {
-        System.out.println("here");
-        return new Card();
-    }
-
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/reject-card-worker")  //+
-    @ResponseBody
-    public Card rejectCardWorker(@RequestParam(required = true) Long workerID,
-                                 @RequestParam(required = true) Long cardID) {
-        System.out.println("here");
-        return new Card();
-    }
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/confirm")
-    @ResponseBody
-    public Card confirmCard(@RequestParam(required = true) Long cardID,
-                            @RequestParam(required = true) Integer rating) {
-        System.out.println("here");
-        return new Card();
-    }
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    name = "Authorization",
-                    value = "Access Token",
-                    required = true,
-                    allowEmptyValue = false,
-                    paramType = "header",
-                    dataTypeClass = String.class,
-                    example = "Bearer access_token"))
-    @GetMapping("/card/our/confirm")
-    @ResponseBody
-    public Card confirmOurCard(@RequestParam(required = true) Long cardID,
-                               @RequestParam(required = true) Long authorId) {
-        System.out.println("card/our/confirm");
-        return new Card();
-    }
-
-
 }

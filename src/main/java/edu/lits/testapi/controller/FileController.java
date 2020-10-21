@@ -1,14 +1,12 @@
 package edu.lits.testapi.controller;
 
+import edu.lits.testapi.model.UploadFileResponse;
 import edu.lits.testapi.pojo.CardToPicture;
+import edu.lits.testapi.pojo.Picture;
 import edu.lits.testapi.service.CardToPicrureService;
+import edu.lits.testapi.service.PictureStorageService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import edu.lits.testapi.model.UploadFileResponse;
-import edu.lits.testapi.pojo.Picture;
-import edu.lits.testapi.service.PictureStorageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -19,14 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
 @RestController
 public class FileController {
-    private static final Logger logger = LoggerFactory.getLogger(edu.lits.testapi.controller.FileController.class);
     @Autowired
     private PictureStorageService pictureStorageService;
     @Autowired
@@ -45,7 +40,7 @@ public class FileController {
         Picture dbFile = pictureStorageService.storeFile(file);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()// i need !
                 .path("/downloadFile/")
-                .path(dbFile.getId().toString())
+                .path(dbFile.getId())
                 .toUriString();
         return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
                 file.getContentType(), file.getSize());
