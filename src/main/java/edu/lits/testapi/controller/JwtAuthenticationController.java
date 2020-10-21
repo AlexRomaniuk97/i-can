@@ -7,7 +7,6 @@ import edu.lits.testapi.service.JwtUserDetailsService;
 import edu.lits.testapi.service.UserService;
 import edu.lits.testapi.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,11 +33,7 @@ public class JwtAuthenticationController {
     @Autowired
     private UserService userService;
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
+    private BCryptPasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
@@ -62,9 +57,7 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public void createUser(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
         User user = new User();
-
         user.setName(authenticationRequest.getUsername());
         user.setPassword(passwordEncoder.encode(authenticationRequest.getPassword()));
         user.setCity(authenticationRequest.getCity());

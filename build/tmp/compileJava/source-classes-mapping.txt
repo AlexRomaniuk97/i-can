@@ -44,8 +44,8 @@ edu/lits/testapi/repository/CardModelRepository.java
  edu.lits.testapi.repository.CardModelRepository
 edu/lits/testapi/service/PotentialWorkerServicelmpl.java
  edu.lits.testapi.service.PotentialWorkerServicelmpl
-edu/lits/testapi/model/JwtRequest.java
- edu.lits.testapi.model.JwtRequest
+edu/lits/testapi/service/JwtUserDetailsService.java
+ edu.lits.testapi.service.JwtUserDetailsService
 edu/lits/testapi/TestapiApplication.java
  edu.lits.testapi.TestapiApplication
 edu/lits/testapi/pojo/Card.java
@@ -100,9 +100,9 @@ edu/lits/testapi/controller/FileController.java
  edu.lits.testapi.controller.FileController
 edu/lits/testapi/service/CardToPicrureService.java
  edu.lits.testapi.service.CardToPicrureService
-edu/lits/testapi/controller/JwtAuthenticationController.java
- edu.lits.testapi.controller.JwtAuthenticationController
-edu/lits/testapi/service/JwtUserDetailsService.java
- edu.lits.testapi.service.JwtUserDetailsService
 edu/lits/testapi/controller/JwtRequestFilter.java
  edu.lits.testapi.controller.JwtRequestFilter
+edu/lits/testapi/model/JwtRequest.java
+ edu.lits.testapi.model.JwtRequest
+edu/lits/testapi/controller/JwtAuthenticationController.java
+ edu.lits.testapi.controller.JwtAuthenticationController
