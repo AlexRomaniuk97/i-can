@@ -102,7 +102,7 @@ edu/lits/testapi/service/CardToPicrureService.java
  edu.lits.testapi.service.CardToPicrureService
 edu/lits/testapi/model/Card.java
  edu.lits.testapi.model.Card
-edu/lits/testapi/controller/CardController.java
- edu.lits.testapi.controller.CardController
 edu/lits/testapi/controller/ResumeController.java
  edu.lits.testapi.controller.ResumeController
+edu/lits/testapi/controller/CardController.java
+ edu.lits.testapi.controller.CardController

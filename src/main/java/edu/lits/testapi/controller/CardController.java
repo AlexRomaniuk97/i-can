@@ -100,6 +100,7 @@ public class CardController {
 
                     potentialWorkerList.get(i).setStatus(1);
                     potentialWorkerService.updateWorker(potentialWorkerList.get(i));
+                    card.setWorker_id(workerID);
                     card.setStatus("INPROGRESS");
                     cardService.updateCard(card);
 
@@ -252,8 +253,11 @@ public class CardController {
     @PostMapping("/contact")
     @ResponseBody
     public edu.lits.testapi.pojo.PotentialWorker contactCard(@RequestBody(required = false) Card userCard) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        edu.lits.testapi.pojo.User loggedInUser = userService.readByUserName(username);
         PotentialWorker potentialWorker = new PotentialWorker();
-        potentialWorker.setUser_id((long) LOGGER_IN_USER_ID);
+        potentialWorker.setUser_id(loggedInUser.getId());
         potentialWorker.setCard_id(userCard.getId());
         potentialWorker.setMessage(userCard.getFirstMessage());
         potentialWorkerService.create(potentialWorker);
