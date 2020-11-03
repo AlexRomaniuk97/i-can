@@ -50,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
               // dont authenticate this particular request
               .authorizeRequests().antMatchers("/authenticate",
               "/http://localhost:8080/downloadFile/**",
-              "i-can-project.herokuapp.com",
-              "herokuapp.com**",
+              "i-can-project.herokuapp.com/**",
+              "herokuapp.com/**",
               "/swagger-ui.html",
               "/swagger-resources/**",
               "/v2/api-docs",
